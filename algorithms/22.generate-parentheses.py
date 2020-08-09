@@ -25,8 +25,8 @@ class Solution:
         return res
 
     def generateParenthesis1(self, n: int) -> List[str]:
-        if n == 0:
-            return []
+        if n == 0: # dp[i] = "(" + dp[可能的括号对数] + ")" + dp[剩下的括号对数]
+            return [] # dp[i] = "(" + dp[j] + ")" + dp[i- j - 1] , j = 0, 1, ..., i - 1
         
         dp = [False for _ in range(n+1)]
         dp[0] = [""]

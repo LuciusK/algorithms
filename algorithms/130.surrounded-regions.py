@@ -79,11 +79,13 @@ class Solution:
     
     def solve2(self, board: List[List[str]]) -> None:
         f = {}
+
         def find(x):
             f.setdefault(x, x)
             if f[x] != x:
                 f[x] = find(f[x])
             return f[x]
+            
         def union(x, y):
             f[find(y)] = find(x)
         
