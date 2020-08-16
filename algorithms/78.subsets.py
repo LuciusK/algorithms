@@ -6,23 +6,7 @@
 
 # @lc code=start
 class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
-        size = len(nums)
-        if size == 0:
-            return []
-        
-        res = []
-        self.__dfs(nums, 0, [], res)
-        return res
-    
-    def __dfs(self, nums, start, path, res):
-        res.append(path[:])
-        for i in range(start, len(nums)):
-            path.append(nums[i])
-            self.__dfs(nums, i + 1, path, res)
-            path.pop()
-    
-    def subsets1(self, nums: List[int]) -> List[List[int]]:
+    def subsetsMOST(self, nums: List[int]) -> List[List[int]]:
         size = len(nums)
         if size == 0:
             return []
@@ -38,10 +22,10 @@ class Solution:
         
         for i in range(begin, len(nums)):
             path.append(nums[i])
-            self._dfs(nums, depth, i+1, path, res)
+            self._dfs(nums, depth, i + 1, path, res)
             path.pop()
     
-    def subsets2(self, nums: List[int]) -> List[List[int]]:
+    def subsets2(self, nums: List[int]) -> List[List[int]]: # 参考
         size = len(nums)
         n = 1 << size
         res = []
@@ -53,13 +37,6 @@ class Solution:
             res.append(cur)
         return res
 
-    def subsets3(self, nums: List[int]) -> List[List[int]]:
-        res = [[]]
-        for x in nums:
-            res += [[x] + num for num in res]
-        return res
 
-
-        
 # @lc code=end
 

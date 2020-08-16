@@ -22,7 +22,7 @@ class Solution:
             letters = d[ord(c) - 48]
 
             for i in letters:
-                dfs(tmp+i, index+1)
+                dfs(tmp + i, index + 1)
         
         dfs("", 0)
         return res
@@ -40,7 +40,7 @@ class Solution:
             for _ in range(size):
                 tmp = res.pop(0)
                 for j in letters:
-                    res.append(tmp+j)
+                    res.append(tmp + j)
         
         return res
 

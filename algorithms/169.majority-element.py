@@ -17,13 +17,6 @@ class Solution:
         
         return candidate
 
-    def majorityElement2(self, nums: List[int]) -> int:
-        majority_count = len(nums) // 2
-        while True:
-            candidate = random.choice(nums)
-            if sum(1 for elem in nums if elem == candidate) > majority_count:
-                return candidate
-
     def majorityElement3(self, nums: List[int]) -> int:
         nums.sort()
         return nums[len(nums) // 2]

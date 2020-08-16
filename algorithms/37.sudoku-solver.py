@@ -25,7 +25,7 @@ class Solution:
                 else:
                     empty.append((i, j))
         
-        def backtrack(iter = 0):
+        def backtrack(iter=0):
             if iter == len(empty):
                 return True
             
@@ -36,7 +36,7 @@ class Solution:
                 col[j].remove(val)
                 box[b].remove(val)
                 board[i][j] = str(val)
-                if backtrack(iter + 1):
+                if backtrack(iter+1):
                     return True
                 row[i].add(val)
                 col[j].add(val)

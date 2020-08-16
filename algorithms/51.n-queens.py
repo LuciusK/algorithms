@@ -42,6 +42,18 @@ class Solution:
     def __convert2board(self, stack, n):
         return ["." * stack[i] + "Q" + "." * (n - stack[i] - 1) for i in range(n)]
         
+    def solveNQueens1(self, n: int) -> List[List[str]]:
+        def DFS(queens, xy_dif, xy_sum):
+            p = len(queens)
+            if p == n:
+                result.append(queens)
+                return None
+            for q in range(n):
+                if q not in queens and p - q not in xy_dif and p + q not in xy_sum:
+                    DFS(queens + [q], xy_dif + [p - q], xy_sum + [p + q])
+        result = []
+        DFS([], [], [])
+        return [['.' * i  + 'Q' + '.' * (n-i-1) for i in sol] for sol in result]
 
 
         
