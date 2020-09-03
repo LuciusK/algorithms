@@ -5,8 +5,8 @@
 #
 
 # @lc code=start
-class Solution:
-    def reverseStr(self, s: str, k: int) -> str:
-        
+
 # @lc code=end
 
+s = [1, 2, 3, 4, 5]
+print(s[3:6])
