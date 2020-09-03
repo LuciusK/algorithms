@@ -17,7 +17,7 @@ class Solution:
                     for m in range(n - 1):
                         # 先n-1次A到达2^(n-1)-1后再R，然后m次A往回走，再R变为正向，已指令n-1+2+m次，
                         # 接着转换为剩余差值即t-(2^(n-1)-1)+(2^m-1)的正向问题即可
-                        dp[t] = min(dp[n], n + m + 1 + race(t - (1 << n - 1) + (1 << m)))
+                        dp[t] = min(dp[t], n + m + 1 + race(t - (1 << n - 1) + (1 << m)))
             return dp[t]
 
         dp = {0: 0}
