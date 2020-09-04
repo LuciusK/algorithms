@@ -5,8 +5,11 @@
 #
 
 # @lc code=start
-
+class Solution:
+    def reverseStr(self, s: str, k: int) -> str:
+        s = list(s)
+        for i in range(0, len(s), 2 * k):
+            s[i:i + k] = reversed(s[i:i + k])
+        return "".join(s)
+        
 # @lc code=end
-
-s = [1, 2, 3, 4, 5]
-print(s[3:6])
