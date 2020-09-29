@@ -9,6 +9,7 @@ class Solution:
     def maximalSquare(self, matrix: List[List[str]]) -> int:
         if not matrix or len(matrix) == 0 or len(matrix[0]) == 0:
             return 0
+        
         rows, cols = len(matrix), len(matrix[0])
         dp = [[0 for i in range(cols + 1)] for j in range(rows + 1)]
 
