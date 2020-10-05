@@ -33,21 +33,6 @@ class Solution:
             if node.right:
                 queue.append((node.right, path + node.right.val))
         return False
-    
-    def hasPathSum2(self, root: TreeNode, sum: int) -> bool:    
-        if not root:
-            return False
-        stack = []
-        stack.append((root, root.val))
-        while stack:
-            node, path = stack.pop()
-            if not node.left and not node.right and path == sum:
-                return True
-            if node.left:
-                stack.append((node.left, path + node.left.val))
-            if node.right:
-                stack.append((node.right, path + node.right.val))
-        return False
 
 # @lc code=end
 
