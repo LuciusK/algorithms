@@ -6,10 +6,6 @@
 
 # @lc code=start
 class Solution:
-    def uniquePaths(self, m: int, n: int) -> int:
-        import math
-        return int(math.factorial(m + n - 2) / math.factorial(m-1) / math.factorial(n - 1))
-
     def uniquePaths1(self, m: int, n: int) -> int:
         dp = [[1] * n] + [[1] + [0] * (n - 1) for _ in range(m - 1)]  # 到最左和最上都只有一种方法走到
 
