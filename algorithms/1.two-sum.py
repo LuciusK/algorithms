@@ -15,16 +15,6 @@ class Solution:
             else:
                 d[n] = i
     
-    """O(n^2)"""
-    def twoSum1(self, nums: List[int], target: int) -> List[int]:
-        for x in range(len(nums)):
-            for y in range(x+1, len(nums)):
-                if nums[x] + nums[y] == target:
-                    return [x, y]
-                    break
-                else:
-                    continue
-    
     """O(n)"""
     def twoSum1132ms(self, nums: List[int], target: int) -> List[int]:
         n = len(nums)
