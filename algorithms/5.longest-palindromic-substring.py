@@ -10,12 +10,9 @@ class Solution:
         size = len(s)
         if size < 2:
             return s
-        
         dp = [[False for _ in range(size)] for _ in range(size)]
-
         max_len = 1
         start = 0
-
         for i in range(size):
             dp[i][i] = True
         
@@ -29,11 +26,8 @@ class Solution:
                 #         dp[i][j] = dp[i + 1][j - 1]
                 # else:
                 #     dp[i][j] = False
-                
-                if dp[i][j]:
-                    cur_len = j - i + 1
-                    if cur_len > max_len:
-                        max_len = cur_len
+                if dp[i][j] and j - i + 1 > max_len:
+                        max_len = j - i + 1
                         start = i
         return s[start:start + max_len]
 
@@ -49,7 +43,7 @@ class Solution:
             palindrome_even, even_len = self.__center_spread(s, size, i, i + 1)
 
             cur_max_sub = palindrome_odd if odd_len > even_len else palindrome_even
-            if max(cur_max_sub) > max_len:
+            if len(cur_max_sub) > max_len:
                 max_len = len(cur_max_sub)
                 res = cur_max_sub
         return res

@@ -20,29 +20,7 @@ class Solution:
         
         res = s1 + s2 - max1 * n - sum(height)
         return res
-
-    # def trap1(self, height: List[int]) -> int:和下面的思路一样
-    #     if not height: return 0
-    #     left = 0
-    #     right = len(height) - 1
-    #     res = 0
-
-    #     left_max = height[left]
-    #     right_max = height[right]
-    #     while left < right:
-    #         if height[left] < height[right]:
-    #             if left_max > height[left]:
-    #                 res += left_max - height[left]
-    #             else:
-    #                 left_max = height[left]
-    #             left += 1
-    #         else:
-    #             if right_max > height[right]:
-    #                 res += right_max - height[right]
-    #             else:
-    #                 right_max = height[right]
-    #             right -= 1
-    #     return res
+        
 
     def trap2(self, height: List[int]) -> int:
         n = len(height)
