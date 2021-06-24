@@ -16,8 +16,5 @@ class Solution:
                 end = maxPosition#倘若到了倒数第二位都没有更新end，那也不用再更新了，因为max一定大于等于最后一位
                 steps += 1
         return steps
-
-
-        
 # @lc code=end
 

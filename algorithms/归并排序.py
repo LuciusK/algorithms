@@ -1,5 +1,3 @@
-
-
 def mergeSort(nums, left, right):
     if right <= left:
         return
