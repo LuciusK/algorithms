@@ -7,34 +7,33 @@
 # @lc code=start
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        import heapq
-        size = len(nums)
-        if k > size:
-            raise Exception("程序出错")
-        
-        L = []
-        for i in range(k):
-            heapq.heappush(L, nums[i])
-        for i in range(k, size):
-            top = L[0]
-            if nums[i] > top:
-                heapq.heapreplace(L, nums[i])
-        return L[0]
-
-    def findKthLargest1(self, nums: List[int], k: int) -> int:    
-        import random
-        n = len(nums)
-        target = n - k
-        left = 0
-        right = n - 1
-        while True:
-            index = self.partition(nums, left, right)
-            if index == target:
-                return nums[target]
-            elif index < target:
-                left = index + 1
-            else:
-                right = index - 1
+        if k <= 0 or k > len(nums):
+            return
+        heap = self.build_heap(nums[:k])
+        for i in range(k, len(nums)):
+            if nums[i] > heap[0]:
+                heap[0] = nums[i]
+                self.sink(heap, 0)
+        return heap[0]
+    
+    def sink(self, array, k):
+        n = len(array)
+        l = 2 * k + 1
+        r = 2 * k + 2
+        if l >= n:
+            return
+        min_i = l 
+        if r < n and array[r] < array[l]:
+            min_i = r 
+        if array[min_i] < array[k]:
+            array[min_i], array[k] = array[k], array[min_i]
+            self.sink(array, min_i)
+    
+    def build_heap(self, array):
+        n = len(array)
+        for i in range(n // 2 - 1, -1, -1):
+            self.sink(array, i)
+        return array
     
     def partition(self, nums, left, right):
         random_index = random.randint(left, right)
