@@ -13,7 +13,7 @@ class Solution:
     def dfs(self, s, n, split, begin, path, res):
         if begin == n:
             if split == 4:
-                res.append('.'.join(path))
+                res.append('.'.join(path[:]))
             return 
         
         if n - begin < 4 - split and n - begin > 3 * (4 - split):

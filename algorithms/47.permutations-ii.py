@@ -9,8 +9,9 @@ class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         def dfs(nums, size, depth, path, used, res):    
             if depth == size:
-                res.append(path.copy())
+                res.append(path[:])
                 return
+                
             for i in range(size):
                 if not used[i]:
 

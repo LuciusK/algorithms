@@ -1,5 +1,3 @@
-
-
 # 计数排序
 def countingSort(nums):
     bucket = [0] * (max(nums) + 1)
@@ -23,7 +21,7 @@ def bucketSort(nums, defaultBucketSize=5):
     for i in range(bucketcount):
         buckets.append([])
     for num in nums:
-        buckets[(nums - minVal) // bucketSize].append(num)
+        buckets[(num - minVal) // bucketSize].append(num)
     nums.clear()
     for bucket in buckets:
         insertionSort(bucket)
