@@ -1,9 +1,5 @@
 import heapq
 class Solution:
-    def getLeastNumbers(self, arr: List[int], k: int) -> List[int]:
-        arr.sort()
-        return arr[:k]
-
     def getLeastNumbers1(self, arr: List[int], k: int) -> List[int]:
         if k == 0:
             return list()
@@ -33,7 +29,8 @@ class Solution:
         n = len(array)
         left = 2 * k + 1
         right = 2 * k + 2
-        if left >= n: return
+        if left >= n: 
+            return
         max_i = left
         if right < n and array[left] < array[right]:
             max_i = right
@@ -43,7 +40,7 @@ class Solution:
         
     def build_heap(self, list_):
         n = len(list_)
-        for i in range(n//2 - 1, -1, -1):
+        for i in range(n // 2 - 1, -1, -1):
             self.sink(list_, i)
         return list_
 

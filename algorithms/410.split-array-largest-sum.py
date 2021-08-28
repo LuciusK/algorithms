@@ -7,25 +7,23 @@
 # @lc code=start
 class Solution:
     def splitArray(self, nums: List[int], m: int) -> int:
-        left, right = max(nums), sum(nums)
-        def test_mid(mid):
-            num = 1
-            s = 0
-            for i in nums:
-                if s + i > mid:
-                    s = i
-                    num += 1
+        def check(x):
+            total, cnt = 0, 1
+            for num in nums:
+                if total + num > x:
+                    total = num
+                    cnt += 1
                 else:
-                    s += i
-            return num > m
+                    total += num
+            return cnt <= m
         
+        left, right = max(nums), sum(nums)
         while left < right:
-            mid = (left + right) // 2
-            if_right = test_mid(mid)
-            if if_right:
-                left = mid + 1
-            else:
+            mid = (left + right) >> 1
+            if check(mid):
                 right = mid
+            else:
+                left = mid + 1
         return left
         
 # @lc code=end

@@ -1,34 +1,41 @@
-
-
 class Solution:
     def reversePairs(self, nums: List[int]) -> int:
         n = len(nums)
-        tmp = [0] * n
-        return self.mergeSort(nums, tmp, 0, n - 1)
-
-    def mergeSort(self, nums, tmp, l, r):
-        if l >= r:
+        tmp = [0] * n 
+        return self.merge_sort(nums, tmp, 0, n - 1)
+    
+    def merge_sort(self, nums, tmp, left, right):
+        if left >= right:
             return 0
-
-        mid = (l + r) // 2
-        cnt = self.mergeSort(nums, tmp, l, mid) + self.mergeSort(nums, tmp, mid + 1, r)
-        i, j, pos = l, mid + 1, l
-        while i <= mid and j <= r:
+        mid = (left + right) >> 1
+        res = self.merge_sort(nums, tmp, left, mid) + \
+              self.merge_sort(nums, tmp, mid + 1, right) + \
+              self.find_reverse(nums, left, right)
+        i, j, k = left, mid + 1, left
+        while i <= mid and j <= right:
             if nums[i] <= nums[j]:
-                tmp[pos] = nums[i]
+                tmp[k] = nums[i]
                 i += 1
-                cnt += (j - (mid + 1))
             else:
-                tmp[pos] = nums[j]
+                tmp[k] = nums[j]
                 j += 1
-            pos += 1
-        for k in range(i, mid + 1):
-            tmp[pos] = nums[k]
-            cnt += (j - (mid + 1))
-            pos += 1
-        for k in range(j, r + 1):
-            tmp[pos] = nums[k]
-            pos += 1
-        nums[l:r + 1] = tmp[l:r + 1]
-
-        return cnt
+            k += 1
+        while i <= mid:
+            tmp[k] = nums[i]
+            k += 1
+            i += 1
+        while j <= right:
+            tmp[k] = nums[j]
+            k += 1
+            j += 1
+        nums[left:right + 1] = tmp[left:right + 1]
+        return res
+        
+    def find_reverse(self, nums, left, right):
+        res, mid = 0, (left + right) >> 1
+        j = mid + 1
+        for i in range(left, mid + 1):
+            while j <= right and nums[i] > nums[j]:
+                res += mid + 1 - i 
+                j += 1
+        return res

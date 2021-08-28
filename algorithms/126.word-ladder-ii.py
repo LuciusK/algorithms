@@ -8,8 +8,6 @@
 from collections import defaultdict, deque
 from typing import List
 import string
-
-
 class Solution:
     def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
         word_set = set(wordList)

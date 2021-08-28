@@ -29,6 +29,21 @@ class Solution:
                 else:
                     dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
         
+        res = ''
+        i = m
+        j = n
+        while i and j and dp[i][j] >= 1:
+            if text1[i - 1] == text2[j - 1]:
+                res += text1[i - 1]
+                i -= 1
+                j -= 1
+            elif dp[i - 1][j] >= dp[i][j - 1]:
+                i -= 1
+            else:
+                j -= 1
+        
+        res = res[::-1]
+        
         return dp[-1][-1]
 
 

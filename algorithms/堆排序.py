@@ -1,28 +1,27 @@
-def heapify(arr, n, i): 
-	largest = i # Initialize largest as root 
-	l = 2 * i + 1	 # left = 2 * i + 1 
-	r = 2 * i + 2	 # right = 2 * i + 2 
-	
-	if l < n and arr[i] < arr[l]:
-		largest = l 
-	if r < n and arr[largest] < arr[r]: 
-		largest = r 
-	if largest != i: 
-		arr[i], arr[largest] = arr[largest], arr[i]
-		heapify(arr, n, largest) 
+def heapify(array, n, k):
+	left = 2 * k + 1
+	right = 2 * k + 2
+	max_i = k
+	if left < n and array[max_i] < array[left]:
+		max_i = left
+	if right < n and array[max_i] < array[right]:
+		max_i = right
+	if max_i != k:
+		array[max_i], array[k] = array[k], array[max_i]
+		heapify(array, n, max_i)
 
 def heapSort(arr): 
 	n = len(arr) 
 	for i in range(n // 2 - 1, -1, -1): 
-		heapify(arr, n, i) 
+		heapify(arr,n, i)
 	for i in range(n - 1, 0, -1): 
-		arr[i], arr[0] = arr[0], arr[i] # swap 
-		heapify(arr, i, 0) 
+		arr[0], arr[i] = arr[i], arr[0] # swap 
+		heapify(arr,i, 0)
 
-
-arr = [12, 11, 13, 5, 6, 7] 
+  
+arr = [99,12,54,12, 11, 13, 5, 6, 7,8,0,45,88] 
 heapSort(arr) 
 n = len(arr) 
-print ("Sorted array is") 
+print ("排序后") 
 for i in range(n): 
-	print ("%d" %arr[i])
+    print ("%d" %arr[i]),

@@ -7,31 +7,45 @@
 # @lc code=start
 class Solution:
     def reversePairs(self, nums: List[int]) -> int:
-        return self.mergeSort(nums, 0, len(nums) - 1)
+        n = len(nums)
+        tmp = [0] * n
+        return self.merge_sort(nums, tmp, 0, n - 1)
 
-    def mergeSort(self, nums, l, r):
-        if l >= r:
+    def merge_sort(self, nums, tmp, left, right):
+        if left >= right:
             return 0
-        mid = l + ((r - l) >> 1)
-        cnt = self.mergeSort(nums, l, mid) + self.mergeSort(nums, mid + 1, r)
-        cache = [0] * (r - l + 1)
-        i, t, c = l, l, 0
-        for j in range(mid + 1, r + 1):
-            while t <= mid and (nums[t] + 1) >> 1 <= nums[j]:
-                t += 1
-            while i <= mid and nums[i] <= nums[j]:
-                cache[c] = nums[i]
-                c += 1
+        mid = (left + right) >> 1
+        res = self.merge_sort(nums, tmp, left, mid) + \
+              self.merge_sort(nums, tmp, mid + 1, right) + \
+              self.find_reverse(nums, left, right)
+        i, j, k = left, mid + 1, left
+        while i <= mid and j <= right:
+            if nums[i] <= nums[j]:
+                tmp[k] = nums[i]
                 i += 1
-            cache[c] = nums[j]
-            c += 1
-            cnt += mid - t + 1
+            else:
+                tmp[k] = nums[j]
+                j += 1
+            k += 1
         while i <= mid:
-            cache[c] = nums[i]
-            c += 1
+            tmp[k] = nums[i]
             i += 1
-        nums[l:r + 1] = cache
-        return cnt
+            k += 1
+        while j <= right:
+            tmp[k] = nums[j]
+            j += 1
+            k += 1
+        nums[left:right + 1] = tmp[left:right + 1]
+        return res
+
+    def find_reverse(self, nums, left, right):
+        res, mid = 0, (left + right) >> 1
+        j = mid + 1
+        for i in range(left, mid + 1):
+            while j <= right and nums[i] > 2 * nums[j]:
+                res += mid + 1 - i
+                j += 1
+        return res
 
 
         

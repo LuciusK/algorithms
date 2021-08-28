@@ -25,3 +25,9 @@ def merge(nums, left, mid, right):
         tmp.append(nums[j])
         j += 1
     nums[left:right + 1] = tmp
+
+# 递归，分到底了才把数据排序整合
+nums = [6,3,1,6,7,4,5,0]
+n = len(nums)
+mergeSort(nums, 0, n - 1)
+print(nums)
